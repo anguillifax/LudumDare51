@@ -11,21 +11,23 @@ namespace GameJam
 		/// <summary>
 		/// Returns the current Game Session. Returns null if it doesn't exist.
 		/// </summary>
-		public static GameSessionState Current => instance.current;
+		public static GameSessionState Current => Instance.current;
 
-		private static GameSession instance;
+		public static GameSession Instance { get; private set; } 
 
 		public Letter[] commonEventPool;
 		public Letter[] bossEventPool;
 
 		public int startingCoins = 12;
 
+		[Header("-- PREVIEW --")]
+		[SerializeField]
 		private GameSessionState current;
 
 		private void Awake()
 		{
 			DontDestroyOnLoad(gameObject);
-			instance = this;
+			Instance = this;
 		}
 
 		private void Start()
@@ -39,8 +41,8 @@ namespace GameJam
 			{
 				coins = startingCoins,
 				currentLevelNumber = 0,
-				commonEvents = new List<Letter>(commonEventPool),
-				bossEvents = new List<Letter>(bossEventPool)
+				commonEvents = new EventPool(commonEventPool),
+				bossEvents = new EventPool(bossEventPool),
 			};
 		}
 	}

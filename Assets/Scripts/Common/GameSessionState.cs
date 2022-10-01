@@ -27,12 +27,12 @@ namespace GameJam
 		/// <summary>
 		/// Available letters to be pulled as the next level.
 		/// </summary>
-		public List<Letter> commonEvents;
+		public EventPool commonEvents;
 
 		/// <summary>
 		/// Available letters to be pulled as the boss level.
 		/// </summary>
-		public List<Letter> bossEvents;
+		public EventPool bossEvents;
 
 	}
 }

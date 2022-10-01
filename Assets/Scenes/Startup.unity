@@ -154,6 +154,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   commonEventPool:
   - {fileID: 11400000, guid: 54925c5db52d6b94e8b0ee32c436cd88, type: 2}
+  - {fileID: 11400000, guid: 54a75134566872e4583d36d6a7df5e5b, type: 2}
+  - {fileID: 11400000, guid: a5a3f94fb5226de4da9b920adc1e705f, type: 2}
+  - {fileID: 11400000, guid: 46fbd2864ab3c4f448099c39e8ca40a5, type: 2}
   bossEventPool:
   - {fileID: 11400000, guid: b8b2871a142b6ef49bc4190dc8841b08, type: 2}
   startingCoins: 12
