@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a9cd4a4a2d2bd24098b2a9be033c9d2, type: 3}
+  m_Name: PlayerConfig
+  m_EditorClassIdentifier: 
+  driveVel: 8
+  driveAccel: 12
+  steerSpatialOffset: 0.5
+  steerInfluence: 0.89
+  steerAccel: 30
+  moveVel: 0
+  moveAccel: 20.1
+  reflectMask:
+    serializedVersion: 2
+    m_Bits: 32768
+  reflectWindowBefore: 0.1
+  reflectWindowAfter: 0.1
+  reflectVelBoost: 3
+  preReflectDist: 0.6

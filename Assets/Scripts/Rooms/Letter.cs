@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace GameJam
 {
-	[CreateAssetMenu(menuName ="LD51/New Letter")]
+	[CreateAssetMenu(menuName ="LD51/Letter")]
 	public class Letter : ScriptableObject
 	{
 		[Multiline]

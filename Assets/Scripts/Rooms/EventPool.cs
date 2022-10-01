@@ -19,8 +19,9 @@ namespace GameJam
 		/// Selects <paramref name="count"/> events from the pool and returns them in shuffled order.
 		/// 
 		/// <para>
-		/// If there are not enough items in the pool to fulfill the request, this method will throw an <see cref="System.Exception"/>.
+		/// If there are not enough items in the pool to fulfill the request, this method will throw an exception.
 		/// </para>
+		/// 
 		/// </summary>
 		/// <param name="count">Number of events to select.</param>
 		/// <param name="fallbackMaxCost">Maximum allowed cost of fallback event to prevent softlocking.</param>
@@ -38,25 +39,24 @@ namespace GameJam
 			}
 
 			List<Letter> selection = new List<Letter>();
-			bool[] taken = new bool[pool.Count];
 
-			void Add(Predicate<Letter> constraint)
+			List<Letter> shuffled = new List<Letter>(pool);
+			shuffled.Shuffle();
+
+			void Add(Predicate<Letter> constraint, string warning = "Failed to find event with given constraint")
 			{
-				List<int> options = new List<int>();
-				for (int i = 0; i < pool.Count; i++)
+				int idx = shuffled.FindIndex(constraint);
+				if (idx < 0)
 				{
-					if (!taken[i] && constraint(pool[i]))
-					{
-						options.Add(i);
-					}
+					Debug.LogError(warning + " (Adding random element instead)");
+					idx = 0;
 				}
-
-				int chosenIndex = options[UnityEngine.Random.Range(0, options.Count)];
-				taken[chosenIndex] = true;
-				selection.Add(pool[chosenIndex]);
+				selection.Add(shuffled[idx]);
+				shuffled.RemoveAt(idx);
 			}
 
-			Add(x => x.cost <= fallbackMaxCost);
+
+			Add(x => x.cost <= fallbackMaxCost, $"Could not find event with cost <= {fallbackMaxCost}");
 
 			for (int i = 0; i < count - 1; i++)
 			{
