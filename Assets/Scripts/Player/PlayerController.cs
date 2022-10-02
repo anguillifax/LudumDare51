@@ -135,23 +135,37 @@ namespace GameJam
 		// Drive
 		// =========================================================
 
+		public float debugMult;
+		public Vector2 outVel;
 
 		private void DriveUpdate()
 		{
-			inputVel = Vector2.MoveTowards(
-				inputVel,
-				config.moveVel * inputs.MoveClamped,
-				config.moveAccel * Time.fixedDeltaTime
-			);
-
 			if (inputs.moveX != 0 || inputs.moveY != 0)
 			{
-				driveDir = Mathf.MoveTowardsAngle(
-					driveDir,
-					Vector2.SignedAngle(new Vector2(inputs.moveX, -inputs.moveY), Vector2.right),
-					config.steerAccel * Time.fixedDeltaTime
+				outVel = Vector2.MoveTowards(
+					FromVec3(body.velocity),
+					inputs.MoveClamped * config.mowerInputVel,
+					config.mowerInputAccel * Time.fixedDeltaTime
 				);
 			}
+
+			debugMult = 1 + config.mowerExponent.Evaluate(outVel.magnitude - config.mowerVel);
+			outVel *= debugMult;
+
+			//inputVel = Vector2.MoveTowards(
+			//	inputVel,
+			//	config.moveVel * inputs.MoveClamped,
+			//	config.moveAccel * Time.fixedDeltaTime
+			//);
+
+			//if (inputs.moveX != 0 || inputs.moveY != 0)
+			//{
+			//	driveDir = Mathf.MoveTowardsAngle(
+			//		driveDir,
+			//		Vector2.SignedAngle(new Vector2(inputs.moveX, -inputs.moveY), Vector2.right),
+			//		config.steerAccel * Time.fixedDeltaTime
+			//	);
+			//}
 
 			//float targetDir;
 			{
@@ -168,15 +182,15 @@ namespace GameJam
 
 
 			// TODO: Dynamic target speed
-			driveSpeedTarget = config.driveVel;
+			//driveSpeedTarget = config.driveVel;
 
-			driveSpeed = Mathf.MoveTowards(
-				driveSpeed, /* lastWorldVel */
-				driveSpeedTarget,
-				config.driveAccel * Time.fixedDeltaTime
-			);
+			//driveSpeed = Mathf.MoveTowards(
+			//	driveSpeed, /* lastWorldVel */
+			//	driveSpeedTarget,
+			//	config.driveAccel * Time.fixedDeltaTime
+			//);
 
-			Vector2 outVel = (FromAngle(driveDir) * driveSpeed) + inputVel;
+			//Vector2 outVel = (FromAngle(driveDir) * driveSpeed) + inputVel;
 
 			// TODO: Pre-reflect time dilation
 

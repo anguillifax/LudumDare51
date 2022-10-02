@@ -11,6 +11,12 @@ namespace GameJam
 		public float driveAccel;
 
 		[Space]
+		public float mowerVel;
+		public AnimationCurve mowerExponent;
+		public float mowerInputVel;
+		public float mowerInputAccel;
+
+		[Space]
 		public float steerSpatialOffset;
 		public float steerInfluence;
 		public float steerAccel;

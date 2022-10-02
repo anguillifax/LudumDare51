@@ -14,6 +14,42 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   driveVel: 8
   driveAccel: 12
+  mowerVel: 7.36
+  mowerExponent:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -6.6487856
+      value: 0.20722727
+      inSlope: -0.05495888
+      outSlope: -0.05495888
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.122955665
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: -0.018095125
+      outSlope: -0.018095125
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.11156099
+    - serializedVersion: 3
+      time: 9.822666
+      value: -0.1616489
+      inSlope: -0.021454725
+      outSlope: -0.021454725
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.15167928
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  mowerInputVel: 12
+  mowerInputAccel: 30
   steerSpatialOffset: 0.5
   steerInfluence: 0.89
   steerAccel: 80
