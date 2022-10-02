@@ -21,6 +21,8 @@ namespace GameJam
 		public ControlState state;
 		public PlayerInputState inputs;
 
+		[Space]
+		public Vector2 outVel;
 		public float driveDir;
 		public float driveSpeed;
 		public float driveSpeedTarget;
@@ -29,7 +31,13 @@ namespace GameJam
 		public float reflectDownBuffer;
 		public float postReflectTimer;
 
+		[Space]
+		public bool debugDrawHeading;
+		public float debugMult;
+
 		private Rigidbody body;
+		public Animator anim;
+		public SpriteRenderer spriteRen;
 
 		// =========================================================
 		// Initialization
@@ -73,13 +81,18 @@ namespace GameJam
 		{
 			FetchInput();
 
+			UpdateAnimator();
+
 			if (Input.GetKeyDown(KeyCode.T))
 			{
 				Vector3 randomAngle = Quaternion.Euler(0, UnityEngine.Random.Range(0, 360), 0) * Vector3.forward;
 				BeginDriving(randomAngle);
 			}
 
-			Debug.DrawRay(body.position, FromVec2(FromAngle(driveDir), 0), Color.yellow);
+			if (debugDrawHeading)
+			{
+				Debug.DrawRay(body.position, FromVec2(FromAngle(driveDir), 0), Color.yellow);
+			}
 		}
 
 		private void FetchInput()
@@ -87,6 +100,35 @@ namespace GameJam
 			inputs.moveX = Input.GetAxisRaw("Horizontal");
 			inputs.moveY = Input.GetAxisRaw("Vertical");
 			inputs.reflectDown = Input.GetButtonDown("Reflect");
+		}
+
+		private void UpdateAnimator()
+		{
+			if (body.velocity.magnitude < 0.1f && inputs.Move.sqrMagnitude == 0)
+			{
+				anim.Play("Idle");
+			}
+			else
+			{
+				if (inputs.Move.sqrMagnitude > 0)
+				{
+					string clip;
+					float angle = Vector2.SignedAngle(inputs.Move, Vector2.up);
+					//Debug.Log($"Angle {angle}, Delta0 {Mathf.DeltaAngle(angle, 0)}, Delta180 {Mathf.DeltaAngle(angle, 180)}");
+					if (Mathf.Abs(Mathf.DeltaAngle(angle, 0)) < 45f)
+						clip = "PlayerWalkUp";
+					else if (Mathf.Abs(Mathf.DeltaAngle(angle, 180)) < 45f)
+						clip = "PlayerWalkDown";
+					else
+						clip = "PlayerWalkLeft";
+					anim.Play(clip);
+				}
+
+				if (inputs.moveX != 0)
+				{
+					spriteRen.flipX = inputs.moveX < 0;
+				}
+			}
 		}
 
 		// =========================================================
@@ -134,9 +176,6 @@ namespace GameJam
 		// =========================================================
 		// Drive
 		// =========================================================
-
-		public float debugMult;
-		public Vector2 outVel;
 
 		private void DriveUpdate()
 		{
@@ -205,6 +244,24 @@ namespace GameJam
 
 		private void ReflectUpdate()
 		{
+		}
+
+		// =========================================================
+		// Physics Callbacks
+		// =========================================================
+
+		private void OnTriggerEnter(Collider other)
+		{
+			TryMow(other);
+		}
+
+		private void TryMow(Collider target)
+		{
+			var mowable = target.GetComponent<IMowable>();
+			if (mowable != null && mowable.CanMow)
+			{
+				mowable.Mow(gameObject);
+			}
 		}
 
 		// =========================================================

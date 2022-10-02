@@ -14,36 +14,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   driveVel: 8
   driveAccel: 12
-  mowerVel: 7.36
+  mowerVel: 11.11
   mowerExponent:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: -6.6487856
-      value: 0.20722727
-      inSlope: -0.05495888
-      outSlope: -0.05495888
+      time: -17.317663
+      value: 0.111769654
+      inSlope: -0.018625781
+      outSlope: -0.018625781
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.122955665
+      outWeight: 0.11956785
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: -0.018095125
-      outSlope: -0.018095125
+      inSlope: -0.0026968296
+      outSlope: -0.0026968296
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.11156099
+      inWeight: 0.14221135
+      outWeight: 0.12439286
     - serializedVersion: 3
-      time: 9.822666
-      value: -0.1616489
-      inSlope: -0.021454725
-      outSlope: -0.021454725
+      time: 25.38353
+      value: -0.1489214
+      inSlope: -0.017251119
+      outSlope: -0.017251119
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.15167928
+      inWeight: 0.10991608
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
