@@ -83,11 +83,19 @@ namespace GameJam
 
 			UpdateAnimator();
 
-			if (Input.GetKeyDown(KeyCode.T))
+			if (state == ControlState.Parked)
 			{
-				Vector3 randomAngle = Quaternion.Euler(0, UnityEngine.Random.Range(0, 360), 0) * Vector3.forward;
-				BeginDriving(randomAngle);
+				if (inputs.Move.sqrMagnitude > 0)
+				{
+					BeginDriving(Vector3.forward);
+				}
 			}
+
+			//if (Input.GetKeyDown(KeyCode.T))
+			//{
+			//	Vector3 randomAngle = Quaternion.Euler(0, UnityEngine.Random.Range(0, 360), 0) * Vector3.forward;
+			//	BeginDriving(randomAngle);
+			//}
 
 			if (debugDrawHeading)
 			{
