@@ -16,7 +16,7 @@ MonoBehaviour:
   driveAccel: 12
   steerSpatialOffset: 0.5
   steerInfluence: 0.89
-  steerAccel: 30
+  steerAccel: 80
   moveVel: 0
   moveAccel: 20.1
   reflectMask:
