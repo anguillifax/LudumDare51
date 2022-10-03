@@ -11,12 +11,14 @@ namespace GameJam
 		public GameObject destroyPrefab;
 
 		private Animator anim;
+		private AudioSource source;
 
 		public bool CanMow => canMow;
 
 		private void Awake()
 		{
 			anim = GetComponentInChildren<Animator>();
+			source = GetComponent<AudioSource>();
 		}
 
 		private void Start()
@@ -39,6 +41,8 @@ namespace GameJam
 			{
 				Instantiate(destroyPrefab, transform.position, transform.rotation);
 			}
+
+			source.Play();
 
 			canMow = false;
 			Destroy(gameObject, destroyDelay);

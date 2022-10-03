@@ -9,8 +9,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7022449327331771205, guid: 88b327e8acc2b094b8697d37224f4e1a, type: 3}
       propertyPath: m_Name
-      value: GrassBase
+      value: Grass01
       objectReference: {fileID: 0}
+    - target: {fileID: 7399485987128044540, guid: 88b327e8acc2b094b8697d37224f4e1a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 574a3038b4ba9244b8203e4882593493, type: 3}
     - target: {fileID: 8937078312388103557, guid: 88b327e8acc2b094b8697d37224f4e1a, type: 3}
       propertyPath: m_RootOrder
       value: 0

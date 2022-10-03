@@ -3,21 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class NewBehaviourScript : MonoBehaviour
+namespace GameJam
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	public class QuitToMenu : MonoBehaviour
+	{
+		public float holdTime = 2f;
+		public float curTime;
+		public GameObject hud;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
+		void Update()
 		{
-			SceneManager.LoadScene("MainMenu");
-		}
+			if (Input.GetKey(KeyCode.Escape))
+			{
+				hud.SetActive(true);
+				curTime -= Time.deltaTime;
+			}
+			else
+			{
+				hud.SetActive(false);
+				curTime = holdTime;
+			}
 
+			if (curTime < 0)
+			{
+				SceneManager.LoadScene("MainMenu");
+			}
+		}
 	}
 }
+
